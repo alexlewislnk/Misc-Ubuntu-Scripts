@@ -1,6 +1,4 @@
-# Misc-Ubuntu-Scripts
-
-## mysql-ram
+# mysql-ram
 I found this script on another site but found it did not calculate the base memory and per connection memory correctly. After comparing to another popular tool for tuning mysql, I fixed the calculations.
 ```
 wget -O /usr/local/bin/mysql-ram https://raw.githubusercontent.com/alexlewislnk/Misc-Ubuntu-Scripts/main/mysql-ram
