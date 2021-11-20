@@ -26,6 +26,8 @@ a2disconf php7.2-fpm
 a2enconf php7.4-fpm
 a2dismod php7.2
 a2dismod php7.4
+a2dismod mpm_prefork
+a2enmod mpm_event
 ```
 
 Make sure legacy PHP config is removed from websites
@@ -41,8 +43,6 @@ systemctl restart apache2
 
 ## Enable http2 in Apache
 ```
-a2dismod mpm_prefork
-a2enmod mpm_event
 a2enmod http2
 ```
 
