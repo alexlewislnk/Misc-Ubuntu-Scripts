@@ -24,6 +24,7 @@ max_allowed_packet = 32M
 max_connections = 50
 EOF
 fi
+systemctl restart mysql
 ```
 
 # Apache PHP-FPM and HTTP2
