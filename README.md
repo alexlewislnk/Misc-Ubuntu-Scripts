@@ -6,8 +6,24 @@ chmod +rx /usr/local/bin/mysql-ram
 ```
 On smaller VPS servers that don't have heavy MySQL usage, I most often find these are the two variables to add to /etc/mysql/mysql.conf.d/mysqld.cnf:
 ```
+if [ -f /etc/mysql/mysql.conf.d/mysqld.cnf ]; then
+cp /etc/mysql/mysql.conf.d/mysqld.cnf /etc/mysql/mysql.conf.d/mysqld.cnf.backup
+sed -i '/max_allowed_packet/D' /etc/mysql/mysql.conf.d/mysqld.cnf
+sed -i '/max_connections/D' /etc/mysql/mysql.conf.d/mysqld.cnf
+cat >> /etc/mysql/mysql.conf.d/mysqld.cnf <<EOF
 max_allowed_packet = 32M
 max_connections = 50
+EOF
+fi
+if [ -f /etc/mysql/mariadb.conf.d/50-server.cnf ]; then
+cp /etc/mysql/mariadb.conf.d/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf.backup
+sed -i '/max_allowed_packet/D' /etc/mysql/mariadb.conf.d/50-server.cnf
+sed -i '/max_connections/D' /etc/mysql/mariadb.conf.d/50-server.cnf
+cat >> /etc/mysql/mariadb.conf.d/50-server.cnf <<EOF
+max_allowed_packet = 32M
+max_connections = 50
+EOF
+fi
 ```
 
 # Apache PHP-FPM and HTTP2
